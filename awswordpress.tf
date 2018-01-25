@@ -17,6 +17,14 @@ resource "aws_instance" "WordPress5" {
    tags {
     Name = "WP5"
   }
+  provisioner "remote-exec" {
+    inline = [
+      "sed -i 's/mysql1.cz9tv4hdxksm.us-east-1.rds.amazonaws.com/${data.aws_db_instance.mysql_inst.endpoint}/' /var/www/html/wp-config.php",
+      "sed -i 's/:3306//' /var/www/html/wp-config.php",
+    ]
+  }
+  depends_on = ["aws_db_instance.default"]
+  
 }
 
 resource "aws_instance" "WordPress6" {
