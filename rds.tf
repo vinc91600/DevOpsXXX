@@ -1,6 +1,7 @@
 ##RDS
 
 resource "aws_db_instance" "default" {
+  identifier           = "mysql_1"
   allocated_storage    = 20
   storage_type         = "gp2"
   engine               = "mysql"
@@ -12,3 +13,9 @@ resource "aws_db_instance" "default" {
   db_subnet_group_name = "default"
   parameter_group_name = "default.mysql5.6"
 }
+
+data "aws_db_instance" "mysql_inst" {
+  db_instance_identifier = "mysql_1"
+}
+
+${data.aws_db_instance.mysql_inst.endpoint} > endpoint.txt
