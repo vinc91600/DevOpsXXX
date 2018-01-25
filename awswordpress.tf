@@ -7,14 +7,14 @@ provider "aws" {
 
 #Create a web server
 
-resource "aws_instance" "WordPress3" {
+resource "aws_instance" "WordPress5" {
   key_name = "KeyINSTA"
   security_groups = [
   "MyDMZ"
   ]
-  ami = "ami-b9b784c3"
+  ami = "ami-6196a51b"
   instance_type = "t2.micro"
    tags {
-    Name = "WP4"
+    Name = "WP5"
   }
 }
