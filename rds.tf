@@ -1,7 +1,7 @@
 ##RDS
 
 resource "aws_db_instance" "default" {
-  identifier           = "mysql_1"
+  identifier           = "mysql2"
   allocated_storage    = 20
   storage_type         = "gp2"
   engine               = "mysql"
@@ -15,7 +15,12 @@ resource "aws_db_instance" "default" {
 }
 
 data "aws_db_instance" "mysql_inst" {
-  db_instance_identifier = "mysql_1"
+  db_instance_identifier = "mysql2"
+  depends_on = ["aws_db_instance.default"]
 }
 
-${data.aws_db_instance.mysql_inst.endpoint} > endpoint.txt
+
+output "endpoint rds" {
+  value = "${data.aws_db_instance.mysql_inst.endpoint}"
+}
+
