@@ -14,5 +14,7 @@ resource "aws_instance" "WordPress3" {
   ]
   ami = "ami-b9b784c3"
   instance_type = "t2.micro"
-
+   tags {
+    Name = "WP4"
+  }
 }
