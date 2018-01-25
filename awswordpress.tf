@@ -18,3 +18,15 @@ resource "aws_instance" "WordPress5" {
     Name = "WP5"
   }
 }
+
+resource "aws_instance" "WordPress6" {
+  key_name = "KeyINSTA"
+  security_groups = [
+  "MyDMZ"
+  ]
+  ami = "ami-6196a51b"
+  instance_type = "t2.micro"
+   tags {
+    Name = "WP6"
+  }
+}
