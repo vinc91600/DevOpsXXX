@@ -21,6 +21,7 @@ resource "aws_instance" "WordPress5" {
     inline = [
       "sudo sed -i 's/mysql1.cz9tv4hdxksm.us-east-1.rds.amazonaws.com/${data.aws_db_instance.mysql_inst.endpoint}/' /var/www/html/wp-config.php",
       "sudo sed -i 's/:3306//' /var/www/html/wp-config.php",
+	  "sudo echo 'WP5' > /var/www/html/test.html",
 
     ]
 
@@ -54,6 +55,7 @@ resource "aws_instance" "WordPress6" {
     inline = [
       "sudo sed -i 's/mysql1.cz9tv4hdxksm.us-east-1.rds.amazonaws.com/${data.aws_db_instance.mysql_inst.endpoint}/' /var/www/html/wp-config.php",
       "sudo sed -i 's/:3306//' /var/www/html/wp-config.php",
+	  "sudo echo 'WP6' > /var/www/html/test.html",
 
     ]
 
