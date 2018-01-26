@@ -69,7 +69,7 @@ resource "aws_instance" "WordPress6" {
       "sudo sed -i 's/mysql1.cz9tv4hdxksm.us-east-1.rds.amazonaws.com/${data.aws_db_instance.mysql_inst.endpoint}/' /var/www/html/wp-config.php",
       "sudo sed -i 's/:3306//' /var/www/html/wp-config.php",
 	  "sudo echo 'WP6' > /var/www/html/test.html",
-	  "mysql --user=wpdb --password=password < /home/ec2-user/dump.sql"
+#	  "mysql -h ${aws_db_instance.default.address} --user=wpdb --password=password < /home/ec2-user/dump.sql"
 
     ]
 
