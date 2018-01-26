@@ -22,5 +22,6 @@ data "aws_db_instance" "mysql_inst" {
 
 output "endpoint rds" {
   value = "${data.aws_db_instance.mysql_inst.endpoint}"
+  depends_on = ["aws_db_instance.default"]
 }
 
