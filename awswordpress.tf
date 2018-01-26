@@ -51,11 +51,25 @@ resource "aws_instance" "WordPress6" {
    tags {
     Name = "WP6"
   }
+  
+  provisioner "file" {
+    source      = "../dump.sql"
+    destination = "/home/ec2-user/dump.sql"
+	connection {
+    type     = "ssh"
+    user     = "ec2-user"
+    private_key = "${file("/root/.ssh/inst")}"
+    timeout = "10m"
+
+  }
+  }
+  
   provisioner "remote-exec" {
     inline = [
       "sudo sed -i 's/mysql1.cz9tv4hdxksm.us-east-1.rds.amazonaws.com/${data.aws_db_instance.mysql_inst.endpoint}/' /var/www/html/wp-config.php",
       "sudo sed -i 's/:3306//' /var/www/html/wp-config.php",
 	  "sudo echo 'WP6' > /var/www/html/test.html",
+	  "mysql --user=wpdb --password=password < /home/ec2-user/dump.sql"
 
     ]
 
@@ -69,6 +83,8 @@ resource "aws_instance" "WordPress6" {
   }
   
   }
+  
+  
 
   depends_on = ["aws_db_instance.default"]
 }
