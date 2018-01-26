@@ -32,3 +32,9 @@ resource "aws_elb" "wpbal" {
 depends_on = ["aws_instance.WordPress6"]
 depends_on = ["aws_instance.WordPress5"]
 }
+
+output "endpoint elb" {
+  value = "${aws_elb.wpbal.dns_name}\n"
+  depends_on = ["aws_elb.wpbal"]
+
+}

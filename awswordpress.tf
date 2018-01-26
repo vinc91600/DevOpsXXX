@@ -72,3 +72,9 @@ resource "aws_instance" "WordPress6" {
 
   depends_on = ["aws_db_instance.default"]
 }
+
+output "endpoints instances" {
+  value = "\n\n${aws_instance.WordPress5.public_dns} \n${aws_instance.WordPress6.public_dns}"
+  depends_on = ["aws_instance.WordPress5"]
+  depends_on = ["aws_instance.WordPress6"]
+}

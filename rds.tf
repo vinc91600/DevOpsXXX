@@ -12,6 +12,7 @@ resource "aws_db_instance" "default" {
   password             = "password"
   db_subnet_group_name = "default"
   parameter_group_name = "default.mysql5.6"
+  skip_final_snapshot = "true"
 }
 
 data "aws_db_instance" "mysql_inst" {
@@ -21,7 +22,7 @@ data "aws_db_instance" "mysql_inst" {
 
 
 output "endpoint rds" {
-  value = "${data.aws_db_instance.mysql_inst.endpoint}"
+  value = "${data.aws_db_instance.mysql_inst.endpoint}\n"
   depends_on = ["aws_db_instance.default"]
 }
 
