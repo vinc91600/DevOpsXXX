@@ -69,7 +69,7 @@ resource "aws_instance" "WordPress6" {
       "sudo sed -i 's/mysql1.cz9tv4hdxksm.us-east-1.rds.amazonaws.com/${data.aws_db_instance.mysql_inst.endpoint}/' /var/www/html/wp-config.php",
       "sudo sed -i 's/:3306//' /var/www/html/wp-config.php",
 	  "sudo echo 'WP6' > /var/www/html/test.html",
-#	  "mysql -h ${aws_db_instance.default.address} --user=wpdb --password=password < /home/ec2-user/dump.sql"
+#	  "mysql -h ${aws_db_instance.default.address} --user=wpdb --password=password wpdb < /home/ec2-user/dump.sql"
 
     ]
 
@@ -90,7 +90,7 @@ resource "aws_instance" "WordPress6" {
 }
 
 output "endpoints instances" {
-  value = "\n\n${aws_instance.WordPress5.public_dns} \n${aws_instance.WordPress6.public_dns}"
+  value = "\n\n${aws_instance.WordPress5.public_dns} \n${aws_instance.WordPress6.public_dns}\n"
   depends_on = ["aws_instance.WordPress5"]
   depends_on = ["aws_instance.WordPress6"]
 }
