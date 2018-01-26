@@ -16,11 +16,11 @@ resource "aws_elb" "wpbal" {
     healthy_threshold   = 2
     unhealthy_threshold = 2
     timeout             = 3
-    target              = "HTTP:80/"
+    target              = "HTTP:80/test.html"
     interval            = 30
   }
 
-  instances                   = ["${aws_instance.WordPress6.id},"${aws_instance.WordPress5.id}"]
+  instances                   = ["${aws_instance.WordPress6.id}","${aws_instance.WordPress5.id}"]
   cross_zone_load_balancing   = true
   idle_timeout                = 400
   connection_draining         = true
@@ -29,4 +29,6 @@ resource "aws_elb" "wpbal" {
   tags {
     Name = "wpbal"
   }
+depends_on = ["aws_instance.WordPress6"]
+depends_on = ["aws_instance.WordPress5"]
 }
